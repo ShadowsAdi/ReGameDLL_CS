@@ -689,7 +689,9 @@ bool CBasePlayerWeapon::ShieldSecondaryFire(int iUpAnim, int iDownAnim)
 	return true;
 }
 
-void CBasePlayerWeapon::KickBack(float up_base, float lateral_base, float up_modifier, float lateral_modifier, float up_max, float lateral_max, int direction_change)
+LINK_HOOK_CLASS_VOID_CHAIN(CBasePlayerWeapon, KickBack, (float up_base, float lateral_base, float up_modifier, float lateral_modifier, float up_max, float lateral_max, int direction_change), up_base, lateral_base, up_modifier, lateral_modifier, up_max, lateral_max, direction_change)
+
+void EXT_FUNC CBasePlayerWeapon::__API_HOOK(KickBack)(float up_base, float lateral_base, float up_modifier, float lateral_modifier, float up_max, float lateral_max, int direction_change)
 {
 	real_t flKickUp;
 	float flKickLateral;
