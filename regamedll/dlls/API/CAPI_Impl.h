@@ -582,8 +582,8 @@ typedef IHookChainClassImpl<bool, CBasePlayerWeapon, int, int, float, float, con
 typedef IHookChainRegistryClassImpl<bool, CBasePlayerWeapon, int, int, float, float, const char *, const char *> CReGameHookRegistry_CBasePlayerWeapon_DefaultShotgunReload;
 
 // CBasePlayerWeapon::KickBack hook
-typedef IHookChainClassImpl<void, float, float, float, float, float, float, int, CBasePlayerWeapon> CReGameHook_CBasePlayerWeapon_KickBack;
-typedef IHookChainRegistryClassImpl<void, float, float, float, float, float, float, int, CBasePlayerWeapon> CReGameHookRegistry_CBasePlayerWeapon_KickBack;
+typedef IHookChainClassImpl<void, float, float, float, float, float, float, int> CReGameHook_CBasePlayerWeapon_KickBack;
+typedef IHookChainRegistryClassImpl<void, float, float, float, float, float, float, int> CReGameHookRegistry_CBasePlayerWeapon_KickBack;
 
 // CBasePlayer::DropIdlePlayer hook
 typedef IHookChainClassImpl<void, class CBasePlayer, const char *> CReGameHook_CBasePlayer_DropIdlePlayer;
