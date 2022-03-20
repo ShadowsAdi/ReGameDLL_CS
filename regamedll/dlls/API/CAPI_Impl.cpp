@@ -126,7 +126,6 @@ GAMEHOOK_REGISTRY(InstallGameRules);
 GAMEHOOK_REGISTRY(PM_Init);
 GAMEHOOK_REGISTRY(PM_Move);
 GAMEHOOK_REGISTRY(PM_AirMove);
-GAMEHOOK_REGISTRY(PM_LadderMove);
 GAMEHOOK_REGISTRY(HandleMenu_ChooseAppearance);
 GAMEHOOK_REGISTRY(HandleMenu_ChooseTeam);
 GAMEHOOK_REGISTRY(ShowMenu);
@@ -204,6 +203,8 @@ GAMEHOOK_REGISTRY(CBasePlayer_Observer_FindNextPlayer);
 GAMEHOOK_REGISTRY(CBasePlayer_Pain);
 GAMEHOOK_REGISTRY(CBasePlayer_DeathSound);
 GAMEHOOK_REGISTRY(CBasePlayer_JoiningThink);
+
+GAMEHOOK_REGISTRY(PM_LadderMove);
 
 int CReGameApi::GetMajorVersion() {
 	return REGAMEDLL_API_VERSION_MAJOR;

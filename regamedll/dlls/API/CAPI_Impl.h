@@ -700,7 +700,6 @@ public:
 	CReGameHookRegistry_PM_Init m_PM_Init;
 	CReGameHookRegistry_PM_Move m_PM_Move;
 	CReGameHookRegistry_PM_AirMove m_PM_AirMove;
-	CReGameHookRegistry_PM_LadderMove m_PM_LadderMove;
 	CReGameHookRegistry_HandleMenu_ChooseAppearance m_HandleMenu_ChooseAppearance;
 	CReGameHookRegistry_HandleMenu_ChooseTeam m_HandleMenu_ChooseTeam;
 	CReGameHookRegistry_ShowMenu m_ShowMenu;
@@ -778,6 +777,8 @@ public:
 	CReGameHookRegistry_CBasePlayer_Pain m_CBasePlayer_Pain;
 	CReGameHookRegistry_CBasePlayer_DeathSound m_CBasePlayer_DeathSound;
 	CReGameHookRegistry_CBasePlayer_JoiningThink m_CBasePlayer_JoiningThink;
+	
+	CReGameHookRegistry_PM_LadderMove m_PM_LadderMove;
 
 public:
 	virtual IReGameHookRegistry_CBasePlayer_Spawn *CBasePlayer_Spawn();
