@@ -1793,7 +1793,9 @@ void PM_FixPlayerCrouchStuck(int direction)
 	VectorCopy(test, pmove->origin);
 }
 
-void PM_UnDuck()
+LINK_HOOK_VOID_CHAIN2(PM_UnDuck);
+
+void EXT_FUNC __API_HOOK(PM_UnDuck)()
 {
 #ifdef REGAMEDLL_ADD
 	if (unduck_method.value)
