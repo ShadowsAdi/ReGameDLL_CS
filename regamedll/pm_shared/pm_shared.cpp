@@ -2840,7 +2840,7 @@ void PM_PlayerMove(qboolean server)
 	//double v2 = (double)pmove->cmd.msec * 0.001;
 	pmove->frametime = pmove->cmd.msec * 0.001;
 
-	PM_ReduceTimers();
+	//PM_ReduceTimers();
 
 	// Convert view angles to vectors
 	AngleVectors(pmove->angles, pmove->forward, pmove->right, pmove->up);
