@@ -2803,7 +2803,7 @@ void PM_ReduceTimers()
 		}
 	}
 
-	if (pmove->fuser2 > 0.0)
+	/*if (pmove->fuser2 > 0.0)
 	{
 		pmove->fuser2 -= pmove->cmd.msec;
 
@@ -2811,7 +2811,7 @@ void PM_ReduceTimers()
 		{
 			pmove->fuser2 = 0;
 		}
-	}
+	}*/
 }
 
 qboolean PM_ShouldDoSpectMode()
@@ -2840,7 +2840,7 @@ void PM_PlayerMove(qboolean server)
 	//double v2 = (double)pmove->cmd.msec * 0.001;
 	pmove->frametime = pmove->cmd.msec * 0.001;
 
-	//PM_ReduceTimers();
+	PM_ReduceTimers();
 
 	// Convert view angles to vectors
 	AngleVectors(pmove->angles, pmove->forward, pmove->right, pmove->up);
