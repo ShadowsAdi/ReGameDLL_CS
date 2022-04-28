@@ -2805,7 +2805,7 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{
-		pmove->fuser2 =  pmove->cmd.msec;
+		pmove->fuser2 -= pmove->cmd.msec * 0.01;
 
 		if (pmove->fuser2 < 0.0)
 		{
