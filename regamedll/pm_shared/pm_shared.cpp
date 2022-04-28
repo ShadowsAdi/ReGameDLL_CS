@@ -2803,15 +2803,15 @@ void PM_ReduceTimers()
 		}
 	}
 
-	/*if (pmove->fuser2 > 0.0)
+	if (pmove->fuser2 > 0.0)
 	{
-		pmove->fuser2 -= pmove->cmd.msec;
+		//pmove->fuser2 -= pmove->cmd.msec;
 
 		if (pmove->fuser2 < 0.0)
 		{
 			pmove->fuser2 = 0;
 		}
-	}*/
+	}
 }
 
 qboolean PM_ShouldDoSpectMode()
