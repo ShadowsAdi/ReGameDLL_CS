@@ -2771,8 +2771,10 @@ void PM_CheckParameters()
 	}
 }
 
+#if defined REGAMEDLL_FIXES
 void PM_ReduceTimers()
 {
+	
 	float frame_msec = 1000.0f * pmove->frametime;
 	
 	if (pmove->flTimeStepSound > 0.0)
@@ -2806,7 +2808,7 @@ void PM_ReduceTimers()
 	}
 
 	if (pmove->fuser2 > 0.0)
-	{		
+	{	
 		pmove->fuser2 -= frame_msec;
 
 		if (pmove->fuser2 < 0.0)
@@ -2815,6 +2817,50 @@ void PM_ReduceTimers()
 		}
 	}
 }
+#else
+void PM_ReduceTimers()
+{
+	if (pmove->flTimeStepSound > 0)
+	{
+		pmove->flTimeStepSound -= pmove->cmd.msec;
+
+		if (pmove->flTimeStepSound < 0)
+		{
+			pmove->flTimeStepSound = 0;
+		}
+	}
+
+	if (pmove->flDuckTime > 0)
+	{
+		pmove->flDuckTime -= pmove->cmd.msec;
+
+		if (pmove->flDuckTime < 0)
+		{
+			pmove->flDuckTime = 0;
+		}
+	}
+
+	if (pmove->flSwimTime > 0)
+	{
+		pmove->flSwimTime -= pmove->cmd.msec;
+
+		if (pmove->flSwimTime < 0)
+		{
+			pmove->flSwimTime = 0;
+		}
+	}
+
+	if (pmove->fuser2 > 0.0)
+	{
+		pmove->fuser2 -= pmove->cmd.msec;
+
+		if (pmove->fuser2 < 0.0)
+		{
+			pmove->fuser2 = 0;
+		}
+	}
+}
+#endif
 
 qboolean PM_ShouldDoSpectMode()
 {
