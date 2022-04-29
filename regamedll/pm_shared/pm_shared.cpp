@@ -2502,6 +2502,8 @@ void PM_Jump()
 		// NOTE: don't do it in .f (float)
 		real_t flRatio = (100.0 - pmove->fuser2 * 0.001 * 19.0) * 0.01;
 		pmove->velocity[2] *= flRatio;
+		
+		pmove->Con_Printf("Debugging: %f || %f || %f", flRatio, pmove->velocity[2], pmove->fuser2);
 	}
 
 	pmove->fuser2 = 1315.789429;
