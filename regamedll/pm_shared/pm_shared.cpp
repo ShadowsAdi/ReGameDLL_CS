@@ -841,7 +841,7 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 	if (addspeed <= 0)
 		return;
 
-	//float calcframe;
+	float calcframe;
 	
 	//calcframe = 0.01 >= pmove->frametime ? pmove->frametime : pmove->frametime * ;
 
