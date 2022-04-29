@@ -2807,7 +2807,7 @@ void PM_ReduceTimers()
 	{
 		pmove->fuser2 -= pmove->cmd.msec;
 		
-		pmove->Con_Printf("Debug: %f : %f", pmove->fuser2, pmove->cmd.msec);
+		pmove->Con_Printf("Debug: %f : %f\n", pmove->fuser2, pmove->cmd.msec);
 
 		if (pmove->fuser2 < 0.0)
 		{
