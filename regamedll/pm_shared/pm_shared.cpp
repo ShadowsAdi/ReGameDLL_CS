@@ -2811,7 +2811,7 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{		
-		pmove->Con_Printf("Debug: %f | %f | %f", pmove->fuser2, frame_msec, pmove->fuser2 -= frame_msec);
+		pmove->Con_Printf("Debug: %f | %f | %f\n", pmove->fuser2, frame_msec, pmove->fuser2 -= frame_msec);
 		
 		pmove->fuser2 -= frame_msec;
 
