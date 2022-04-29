@@ -842,7 +842,9 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 		return;
 
 	// Determine amount of accleration.
-	accelspeed = accel * wishspeed * pmove->friction;
+	accelspeed = accel * pmove->frametime * wishspeed * pmove->friction;
+	
+	pmove->Con_Printf("Debugs: %f | %f | %f | %f\n", accel, pmove->frametime, wishspeed, pmove->friction); 
 
 	// Cap at addspeed
 	if (accelspeed > addspeed)
@@ -2502,8 +2504,6 @@ void PM_Jump()
 		// NOTE: don't do it in .f (float)
 		real_t flRatio = (100.0 - pmove->fuser2 * 0.001 * 19.0) * 0.01;
 		pmove->velocity[2] *= flRatio;
-		
-		pmove->Con_Printf("Debugging: %f || %f || %f", flRatio, pmove->velocity[2], pmove->fuser2);
 	}
 
 	pmove->fuser2 = 1315.789429;
@@ -2806,9 +2806,7 @@ void PM_ReduceTimers()
 	}
 
 	if (pmove->fuser2 > 0.0)
-	{
-		pmove->Con_Printf("Debug: %f : %f\n", pmove->fuser2, pmove->cmd.msec);
-		
+	{		
 		pmove->fuser2 -= pmove->cmd.msec;
 
 		if (pmove->fuser2 < 50.0)
