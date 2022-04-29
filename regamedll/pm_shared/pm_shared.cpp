@@ -2779,9 +2779,12 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
+	float frame_msec = 1000.0f * pmove->frametime;
+	int iFrameMsec = (int)frame_msec;
+	
 	if (pmove->flTimeStepSound > 0)
 	{
-		pmove->flTimeStepSound -= pmove->cmd.msec;
+		pmove->flTimeStepSound -= iFrameMsec;
 
 		if (pmove->flTimeStepSound < 0)
 		{
@@ -2791,7 +2794,7 @@ void PM_ReduceTimers()
 
 	if (pmove->flDuckTime > 0)
 	{
-		pmove->flDuckTime -= pmove->cmd.msec;
+		pmove->flDuckTime -= iFrameMsec;
 
 		if (pmove->flDuckTime < 0)
 		{
@@ -2801,7 +2804,7 @@ void PM_ReduceTimers()
 
 	if (pmove->flSwimTime > 0)
 	{
-		pmove->flSwimTime -= pmove->cmd.msec;
+		pmove->flSwimTime -= iFrameMsec;
 
 		if (pmove->flSwimTime < 0)
 		{
@@ -2811,9 +2814,9 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{		
-		pmove->Con_Printf("Debug: %f | %f | %f", pmove->fuser2, pmove->cmd.msec, pmove->fuser2 -= pmove->cmd.msec);
+		pmove->Con_Printf("Debug: %f | %f | %f", pmove->fuser2, iFrameMsec, pmove->fuser2 -= iFrameMsec);
 		
-		pmove->fuser2 -= pmove->cmd.msec;
+		pmove->fuser2 -= iFrameMsec;
 
 		if (pmove->fuser2 < 0.0)
 		{
