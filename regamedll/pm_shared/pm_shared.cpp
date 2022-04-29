@@ -2774,7 +2774,6 @@ void PM_CheckParameters()
 #if defined REGAMEDLL_FIXES
 void PM_ReduceTimers()
 {
-	
 	float frame_msec = 1000.0f * pmove->frametime;
 	
 	if (pmove->flTimeStepSound > 0.0)
