@@ -2773,43 +2773,45 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
-	if (pmove->flTimeStepSound > 0)
+	float frame_msec = 1000.0f * pmove->frametime;
+	
+	if (pmove->flTimeStepSound > 0.0)
 	{
-		pmove->flTimeStepSound -= pmove->cmd.msec;
+		pmove->flTimeStepSound -= frame_msec;
 
 		if (pmove->flTimeStepSound < 0)
 		{
-			pmove->flTimeStepSound = 0;
+			pmove->flTimeStepSound = 0.0;
 		}
 	}
 
-	if (pmove->flDuckTime > 0)
+	if (pmove->flDuckTime > 0.0)
 	{
-		pmove->flDuckTime -= pmove->cmd.msec;
+		pmove->flDuckTime -= frame_msec;
 
 		if (pmove->flDuckTime < 0)
 		{
-			pmove->flDuckTime = 0;
+			pmove->flDuckTime = 0.0;
 		}
 	}
 
-	if (pmove->flSwimTime > 0)
+	if (pmove->flSwimTime > 0.0)
 	{
-		pmove->flSwimTime -= pmove->cmd.msec;
+		pmove->flSwimTime -= frame_msec;
 
 		if (pmove->flSwimTime < 0)
 		{
-			pmove->flSwimTime = 0;
+			pmove->flSwimTime = 0.0;
 		}
 	}
 
 	if (pmove->fuser2 > 0.0)
-	{
-		pmove->fuser2 -= pmove->cmd.msec;
+	{		
+		pmove->fuser2 -= frame_msec;
 
 		if (pmove->fuser2 < 0.0)
 		{
-			pmove->fuser2 = 0;
+			pmove->fuser2 = 0.0;
 		}
 	}
 }
