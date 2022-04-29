@@ -842,7 +842,7 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 		return;
 
 	// Determine amount of accleration.
-	accelspeed = accel * pmove->frametime * wishspeed * pmove->friction;
+	accelspeed = accel * wishspeed * pmove->friction;
 
 	// Cap at addspeed
 	if (accelspeed > addspeed)
