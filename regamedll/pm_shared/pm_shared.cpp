@@ -2814,6 +2814,8 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{		
+		pmove->Con_Printf("Debug: %f | %f", pmove->fuser2, iFrameMsec, pmove->fuser2 -= iFrameMsec);
+		
 		pmove->fuser2 -= iFrameMsec;
 
 		if (pmove->fuser2 < 0.0)
@@ -2847,7 +2849,6 @@ void PM_PlayerMove(qboolean server)
 	// # of msec to apply movement
 
 	//double v2 = (double)pmove->cmd.msec * 0.001;
-	pmove->Con_Printf("Pmove: %f | %f | %f\n", pmove->cmd.msec, pmove->frametime, pmove->cmd.msec * 0.001);
 	pmove->frametime = pmove->cmd.msec * 0.001;
 
 	PM_ReduceTimers();
