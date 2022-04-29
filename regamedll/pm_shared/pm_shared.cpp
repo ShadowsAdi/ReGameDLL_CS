@@ -853,8 +853,6 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 	// Cap at addspeed
 	if (accelspeed > addspeed)
 		accelspeed = addspeed;
-	
-	
 
 	// Adjust velocity.
 	for (i = 0; i < 3; i++)
@@ -2781,9 +2779,12 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
+	float frame_msec = 1000.0f * pmove->frametime;
+	int iFrameMsec = (int)frame_msec;
+	
 	if (pmove->flTimeStepSound > 0)
 	{
-		pmove->flTimeStepSound -= pmove->cmd.msec;
+		pmove->flTimeStepSound -= iFrameMsec;
 
 		if (pmove->flTimeStepSound < 0)
 		{
@@ -2793,7 +2794,7 @@ void PM_ReduceTimers()
 
 	if (pmove->flDuckTime > 0)
 	{
-		pmove->flDuckTime -= pmove->cmd.msec;
+		pmove->flDuckTime -= iFrameMsec;
 
 		if (pmove->flDuckTime < 0)
 		{
@@ -2803,7 +2804,7 @@ void PM_ReduceTimers()
 
 	if (pmove->flSwimTime > 0)
 	{
-		pmove->flSwimTime -= pmove->cmd.msec;
+		pmove->flSwimTime -= iFrameMsec;
 
 		if (pmove->flSwimTime < 0)
 		{
@@ -2813,7 +2814,7 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{		
-		pmove->fuser2 -= pmove->cmd.msec;
+		pmove->fuser2 -= iFrameMsec;
 
 		if (pmove->fuser2 < 0.0)
 		{
@@ -2846,6 +2847,7 @@ void PM_PlayerMove(qboolean server)
 	// # of msec to apply movement
 
 	//double v2 = (double)pmove->cmd.msec * 0.001;
+	pmove->Con_Printf("Pmove: %f | %f | %f\n", pmove->cmd.msec, pmove->frametime, pmove->cmd.msec * 0.001);
 	pmove->frametime = pmove->cmd.msec * 0.001;
 
 	PM_ReduceTimers();
