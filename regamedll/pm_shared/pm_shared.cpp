@@ -846,7 +846,7 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 	//calcframe = 0.01 >= pmove->frametime ? pmove->frametime : pmove->frametime * ;
 
 	// Determine amount of accleration.
-	accelspeed = accel * 0.05 * wishspeed * pmove->friction;
+	accelspeed = accel * 0.01 * wishspeed * pmove->friction;
 	
 	pmove->Con_Printf("Debugs: %f | %f | %f | %f\n", accel, pmove->frametime, wishspeed, pmove->friction); 
 
