@@ -69,6 +69,8 @@ BOOL CDEAGLE::Deploy()
 		return DefaultDeploy("models/shield/v_shield_deagle.mdl", "models/shield/p_shield_deagle.mdl", DEAGLE_DRAW, "shieldgun", UseDecrement() != FALSE);
 	else
 		return DefaultDeploy("models/v_deagle.mdl", "models/p_deagle.mdl", DEAGLE_DRAW, "onehanded", UseDecrement() != FALSE);
+	
+	return FALSE;
 }
 
 void CDEAGLE::PrimaryAttack()
