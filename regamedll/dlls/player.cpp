@@ -3900,7 +3900,6 @@ void EXT_FUNC CBasePlayer::__API_HOOK(StartObserver)(Vector &vecPosition, Vector
 		WRITE_BYTE(TE_KILLPLAYERATTACHMENTS);
 		WRITE_BYTE(entindex());
 	MESSAGE_END();
-	}
 
 	// Holster weapon immediately, to allow it to cleanup
 	if (m_pActiveItem)
