@@ -3781,7 +3781,10 @@ void CBasePlayer::PlayerDeathThink()
 				StartDeathCam();
 			}
 			
-			SpawnClientSideCorpse();
+			if(HasTimePassedSinceDeath(DYING_TIME))
+			{
+				SpawnClientSideCorpse();
+			}
 		}
 	}
 
@@ -8705,14 +8708,12 @@ void CBasePlayer::SpawnClientSideCorpse()
 	// not allow to spawn, if the player was torn to gib
 	if (pev->effects & EF_NODRAW)
 	{
-		ClientPrint(pev, HUD_PRINTCONSOLE, "Here 1\n");
 		return;
 	}
 
 	// do not make a corpse if the player goes to respawn.
 	if (pev->deadflag == DEAD_RESPAWNABLE)
 	{
-		ClientPrint(pev, HUD_PRINTCONSOLE, "Here 2\n");
 		return;
 	}
 #endif
