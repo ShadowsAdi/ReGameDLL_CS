@@ -189,6 +189,8 @@ extern cvar_t sv_autobunnyhopping;
 extern cvar_t sv_enablebunnyhopping;
 extern cvar_t plant_c4_anywhere;
 
+extern cvar_t dying_time;
+
 #endif
 
 extern cvar_t scoreboard_showmoney;

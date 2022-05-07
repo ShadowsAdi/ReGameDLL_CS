@@ -3773,11 +3773,8 @@ void CBasePlayer::PlayerDeathThink()
 	{
 		// if the player has been dead for one second longer than allowed by forcerespawn,
 		// forcerespawn isn't on. Send the player off to an intermission camera until they choose to respawn.
-		if (g_pGameRules->IsMultiplayer() && HasTimePassedSinceDeath(3.0f) && !(m_afPhysicsFlags & PFLAG_OBSERVER))
+		if (g_pGameRules->IsMultiplayer() && HasTimePassedSinceDeath(CGameRules::GetDyingTime()) && !(m_afPhysicsFlags & PFLAG_OBSERVER))
 		{
-			// Send message to everybody to spawn a corpse.
-			SpawnClientSideCorpse();
-
 			// go to dead camera.
 			StartDeathCam();
 		}
@@ -8711,11 +8708,15 @@ void CBasePlayer::SpawnClientSideCorpse()
 #ifdef REGAMEDLL_FIXES
 	// not allow to spawn, if the player was torn to gib
 	if (pev->effects & EF_NODRAW)
+	{
 		return;
+	}
 
 	// do not make a corpse if the player goes to respawn.
 	if (pev->deadflag == DEAD_RESPAWNABLE)
+	{
 		return;
+	}
 #endif
 
 #ifdef REGAMEDLL_ADD

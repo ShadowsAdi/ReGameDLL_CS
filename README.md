@@ -104,6 +104,7 @@ This means that plugins that do binary code analysis (Orpheu for example) probab
 | sv_autobunnyhopping                | 0       | 0   | 1            | Players automatically re-jump while holding jump button.<br/>`0` disabled <br/>`1` enabled |
 | sv_enablebunnyhopping              | 0       | 0   | 1            | Allow player speed to exceed maximum running speed.<br/>`0` disabled <br/>`1` enabled |
 | mp_plant_c4_anywhere               | 0       | 0   | 1            | When set, players can plant anywhere, not only in bombsites.<br/>`0` disabled <br/>`1` enabled |
+| mp_dying_time                      | 3.0     | 0.0 | -            | Time for switch to free observing after death.<br/>`0` disabled (instant view switch).<br/>`>0.00001` - time delay to start spectate.<br/>`NOTE`: The countdown starts when the player’s death animation is finished.|
 </details>
 
 ## How to install zBot for CS 1.6?
