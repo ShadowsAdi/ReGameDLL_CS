@@ -3888,6 +3888,7 @@ void EXT_FUNC CBasePlayer::__API_HOOK(StartDeathCam)()
 
 	if (pev->view_ofs == g_vecZero)
 	{
+		Con_Printf("Here 3\n");
 		// don't accept subsequent attempts to StartDeathCam()
 		return;
 	}
@@ -8707,11 +8708,17 @@ void CBasePlayer::SpawnClientSideCorpse()
 #ifdef REGAMEDLL_FIXES
 	// not allow to spawn, if the player was torn to gib
 	if (pev->effects & EF_NODRAW)
+	{
+		Con_Printf("Here 1\n");
 		return;
+	}
 
 	// do not make a corpse if the player goes to respawn.
 	if (pev->deadflag == DEAD_RESPAWNABLE)
+	{
+		Con_Printf("Here 2\n");
 		return;
+	}
 #endif
 
 #ifdef REGAMEDLL_ADD
