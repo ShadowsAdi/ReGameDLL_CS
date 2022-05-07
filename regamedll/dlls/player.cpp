@@ -3773,18 +3773,10 @@ void CBasePlayer::PlayerDeathThink()
 	{
 		// if the player has been dead for one second longer than allowed by forcerespawn,
 		// forcerespawn isn't on. Send the player off to an intermission camera until they choose to respawn.
-		if (g_pGameRules->IsMultiplayer() && !(m_afPhysicsFlags & PFLAG_OBSERVER))
+		if (g_pGameRules->IsMultiplayer() && HasTimePassedSinceDeath(CGameRules::GetDyingTime()) && !(m_afPhysicsFlags & PFLAG_OBSERVER))
 		{
-			if(HasTimePassedSinceDeath(CGameRules::GetDyingTime()))
-			{
-				// go to dead camera.
-				StartDeathCam();
-			}
-			
-			if(HasTimePassedSinceDeath(DYING_TIME))
-			{
-				SpawnClientSideCorpse();
-			}
+			// go to dead camera.
+			StartDeathCam();
 		}
 	}
 
@@ -3887,7 +3879,6 @@ void EXT_FUNC CBasePlayer::__API_HOOK(StartDeathCam)()
 
 	if (pev->view_ofs == g_vecZero)
 	{
-		ClientPrint(pev, HUD_PRINTCONSOLE, "Here 3\n");
 		// don't accept subsequent attempts to StartDeathCam()
 		return;
 	}
@@ -3904,13 +3895,11 @@ LINK_HOOK_CLASS_VOID_CHAIN(CBasePlayer, StartObserver, (Vector &vecPosition, Vec
 
 void EXT_FUNC CBasePlayer::__API_HOOK(StartObserver)(Vector &vecPosition, Vector &vecViewAngle)
 {
-	if(HasTimePassedSinceDeath(DYING_TIME))
-	{
-		// clear any clientside entities attached to this player
-		MESSAGE_BEGIN(MSG_PAS, SVC_TEMPENTITY, pev->origin);
-			WRITE_BYTE(TE_KILLPLAYERATTACHMENTS);
-			WRITE_BYTE(entindex());
-		MESSAGE_END();
+	// clear any clientside entities attached to this player
+	MESSAGE_BEGIN(MSG_PAS, SVC_TEMPENTITY, pev->origin);
+		WRITE_BYTE(TE_KILLPLAYERATTACHMENTS);
+		WRITE_BYTE(entindex());
+	MESSAGE_END();
 	}
 
 	// Holster weapon immediately, to allow it to cleanup
