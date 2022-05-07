@@ -3775,11 +3775,11 @@ void CBasePlayer::PlayerDeathThink()
 		// forcerespawn isn't on. Send the player off to an intermission camera until they choose to respawn.
 		if (g_pGameRules->IsMultiplayer() && !(m_afPhysicsFlags & PFLAG_OBSERVER))
 		{
-			if(HasTimePassedSinceDeath(DYING_TIME))
+			/*if(HasTimePassedSinceDeath(DYING_TIME))
 			{
 				// Send message to everybody to spawn a corpse.
 				SpawnClientSideCorpse();
-			}
+			}*/
 
 			if(HasTimePassedSinceDeath(CGameRules::GetDyingTime()))
 			{
