@@ -3904,11 +3904,14 @@ LINK_HOOK_CLASS_VOID_CHAIN(CBasePlayer, StartObserver, (Vector &vecPosition, Vec
 
 void EXT_FUNC CBasePlayer::__API_HOOK(StartObserver)(Vector &vecPosition, Vector &vecViewAngle)
 {
-	// clear any clientside entities attached to this player
-	MESSAGE_BEGIN(MSG_PAS, SVC_TEMPENTITY, pev->origin);
-		WRITE_BYTE(TE_KILLPLAYERATTACHMENTS);
-		WRITE_BYTE(entindex());
-	MESSAGE_END();
+	if(HasTimePassedSinceDeath(DYING_TIME))
+	{
+		// clear any clientside entities attached to this player
+		MESSAGE_BEGIN(MSG_PAS, SVC_TEMPENTITY, pev->origin);
+			WRITE_BYTE(TE_KILLPLAYERATTACHMENTS);
+			WRITE_BYTE(entindex());
+		MESSAGE_END();
+	}
 
 	// Holster weapon immediately, to allow it to cleanup
 	if (m_pActiveItem)
