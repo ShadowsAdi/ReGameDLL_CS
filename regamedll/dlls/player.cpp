@@ -6281,6 +6281,12 @@ void CBasePlayer::ForceClientDllUpdate()
 #ifdef REGAMEDLL_FIXES
 	// fix for https://github.com/ValveSoftware/halflife/issues/1567
 	m_iClientHideHUD = -1;
+	m_iClientFOV = -1;
+
+	for (int i = 0; i < MAX_AMMO_SLOTS; ++i)
+	{
+		m_rgAmmoLast[i] = 0;
+	}
 #endif
 
 	m_iClientHealth = -1;
