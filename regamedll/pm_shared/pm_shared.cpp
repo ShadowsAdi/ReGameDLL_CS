@@ -2773,9 +2773,7 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
-	float frame_msec;
-	
-	frame_msec = 1000.0f * pmove->frametime;
+	float frame_msec = 1000.0f * pmove->frametime;
 
 	if(sv_legacy_movement.value <= 0.0)
 	{
@@ -2786,7 +2784,7 @@ void PM_ReduceTimers()
 	{
 		pmove->flTimeStepSound -= frame_msec;
 
-		if (pmove->flTimeStepSound < 0)
+		if (pmove->flTimeStepSound < 0.0)
 		{
 			pmove->flTimeStepSound = 0.0;
 		}
@@ -2796,7 +2794,7 @@ void PM_ReduceTimers()
 	{
 		pmove->flDuckTime -= frame_msec;
 
-		if (pmove->flDuckTime < 0)
+		if (pmove->flDuckTime < 0.0)
 		{
 			pmove->flDuckTime = 0.0;
 		}
@@ -2806,7 +2804,7 @@ void PM_ReduceTimers()
 	{
 		pmove->flSwimTime -= frame_msec;
 
-		if (pmove->flSwimTime < 0)
+		if (pmove->flSwimTime < 0.0)
 		{
 			pmove->flSwimTime = 0.0;
 		}
@@ -2814,7 +2812,7 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{	
-		pmove->Con_Printf("Here : %f | %f\n", frame_msec, pmove->fuser2);
+		pmove->Con_Printf("Here : %f | %f | %f\n", frame_msec, pmove->fuser2, pmove->fuser2 -= frame_msec);
 		
 		pmove->fuser2 -= frame_msec;
 
