@@ -93,6 +93,7 @@ cvar_t sk_healthkit3         = { "sk_healthkit3", "0", 0, 0.0f, nullptr };
 cvar_t sk_scientist_heal1    = { "sk_scientist_heal1", "0", 0, 0.0f, nullptr };
 cvar_t sk_scientist_heal2    = { "sk_scientist_heal2", "0", 0, 0.0f, nullptr };
 cvar_t sk_scientist_heal3    = { "sk_scientist_heal3", "0", 0, 0.0f, nullptr };
+cvar_t sv_legacy_movement                = { "sv_legacy_movement", "0", FCVAR_SERVER, 0.0f, nullptr };
 
 #ifdef BUILD_LATEST
 
@@ -162,7 +163,6 @@ cvar_t allchat                           = { "sv_allchat", "0", 0, 0.0f, nullptr
 cvar_t sv_autobunnyhopping               = { "sv_autobunnyhopping", "0", 0, 0.0f, nullptr };
 cvar_t sv_enablebunnyhopping             = { "sv_enablebunnyhopping", "0", 0, 0.0f, nullptr };
 cvar_t plant_c4_anywhere                 = { "mp_plant_c4_anywhere", "0", 0, 0.0f, nullptr };
-cvar_t sv_legacy_movement                   = { "sv_legacy_movement", "0", FCVAR_SERVER, 0.0f, nullptr };
 
 void GameDLL_Version_f()
 {
