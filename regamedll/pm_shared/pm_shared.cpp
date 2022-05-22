@@ -2777,7 +2777,8 @@ void PM_ReduceTimers()
 	
 	frame_msec = 1000.0f * pmove->frametime;
 	
-	if(int(legacy_movement.value) <= 0)
+	int legacy_movement = int(sv_legacy_movement.value)
+	if(!legacy_movement)
 	{
 		frame_msec = pmove->cmd.msec;
 	}
