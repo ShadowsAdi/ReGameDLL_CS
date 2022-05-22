@@ -2773,7 +2773,7 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
-	float frame_msec = 1000.0f * pmove->frametime;
+	float frame_msec = 2000.0f * pmove->frametime;
 
 	if(sv_legacy_movement.value <= 0.0)
 	{
@@ -2812,11 +2812,11 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{	
-		pmove->Con_Printf("%f \n", pmove->fuser2);
-		pmove->Con_Printf("Here : %f | %f | %f\n", frame_msec, pmove->fuser2, pmove->fuser2 -= frame_msec);
+		//pmove->Con_Printf("%f \n", pmove->fuser2);
+		//pmove->Con_Printf("Here : %f | %f | %f\n", frame_msec, pmove->fuser2, pmove->fuser2 -= frame_msec);
 		
 		pmove->fuser2 -= frame_msec;
-		pmove->Con_Printf("%f \n", pmove->fuser2);
+		//pmove->Con_Printf("%f \n", pmove->fuser2);
 
 		if (pmove->fuser2 < 0.0)
 		{
