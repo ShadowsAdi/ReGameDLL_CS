@@ -2779,11 +2779,11 @@ void PM_ReduceTimers()
 
 	if(sv_legacy_movement.value <= 0.0)
 	{
-		pmove->Con_Printf("Here 1 : %f", frame_msec);
+		pmove->Con_Printf("Here 1 : %f\n", frame_msec);
 		frame_msec = pmove->cmd.msec;
 	}
 	
-	pmove->Con_Printf("Here 2 : %f", frame_msec);
+	pmove->Con_Printf("Here 2asdasd : %f\n", frame_msec);
 	
 	if (pmove->flTimeStepSound > 0.0)
 	{
