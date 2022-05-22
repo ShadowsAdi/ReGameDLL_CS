@@ -1795,9 +1795,8 @@ void PM_FixPlayerCrouchStuck(int direction)
 
 void PM_UnDuck()
 {
-#ifdef REGAMEDLL_ADD
 	if (unduck_method.value)
-#endif
+
 	{
 #ifdef REGAMEDLL_FIXES
 		// if ducking isn't finished yet, so don't unduck
@@ -2777,7 +2776,7 @@ void PM_ReduceTimers()
 	
 	frame_msec = 1000.0f * pmove->frametime;
 	
-	int legacy_movement = int(sv_legacy_movement.value);
+	int legacy_movement; //= int(sv_legacy_movement.value);
 	
 	if(!legacy_movement)
 	{
