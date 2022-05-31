@@ -836,8 +836,6 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 
 	// Reduce wishspeed by the amount of veer.
 	addspeed = wishspeed - currentspeed;
-	
-	pmove->Con_Printf("Speed: %f | %f\n", currentspeed, addspeed);
 
 	// If not going to add any speed, done.
 	if (addspeed <= 0)
@@ -845,8 +843,6 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 
 	// Determine amount of accleration.
 	accelspeed = accel * pmove->frametime * wishspeed * pmove->friction;
-	
-	pmove->Con_Printf("Accel: %f | %f \n", accelspeed, addspeed);
 
 	// Cap at addspeed
 	if (accelspeed > addspeed)
@@ -882,15 +878,10 @@ void PM_WalkMove()
 
 	if (pmove->fuser2 > 0.0)
 	{
-#ifdef REGAMEDLL_ADD
-		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.02;
-#else
 		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.01;
-#endif
 
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
-		pmove->Con_Printf("Here 1: %f | %f | %f \n", pmove->velocity[0], pmove->velocity[1], flRatio);
 	}
 
 	// Copy movement amounts
@@ -2832,7 +2823,11 @@ void PM_ReduceTimers()
 
 	if (pmove->fuser2 > 0.0)
 	{
+		pmove->Con_Printf("Here: %f\n", pmove->fuser2);
+		
 		pmove->fuser2 -= frame_msec;
+
+		pmove->Con_Printf("Here 1: %f | %f \n", pmove->fuser2, frame_msec );
 
 		if (pmove->fuser2 < 0.0)
 		{
