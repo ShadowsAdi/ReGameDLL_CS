@@ -1085,7 +1085,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>REGAMEDLL_API;REGAMEDLL_FIXES;REGAMEDLL_SELF;REGAMEDLL_SSE;UNICODE_FIXES;USE_QSTRING;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>REGAMEDLL_ADD;REGAMEDLL_API;REGAMEDLL_FIXES;REGAMEDLL_SELF;REGAMEDLL_SSE;UNICODE_FIXES;USE_QSTRING;_CRT_SECURE_NO_WARNINGS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>precompiled.h</PrecompiledHeaderFile>
