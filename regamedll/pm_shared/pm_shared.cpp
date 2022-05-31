@@ -883,8 +883,9 @@ void PM_WalkMove()
 	if (pmove->fuser2 > 0.0)
 	{
 		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.01;
-
+#ifdef REGAMEDLL_ADD
 		VectorInverse(pmove->velocity);
+#endif
 
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
