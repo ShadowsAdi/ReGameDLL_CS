@@ -836,6 +836,8 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 
 	// Reduce wishspeed by the amount of veer.
 	addspeed = wishspeed - currentspeed;
+	
+	pmove->Con_Printf("Speed: %f | %f", currentspeed, addspeed);
 
 	// If not going to add any speed, done.
 	if (addspeed <= 0)
@@ -843,6 +845,8 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 
 	// Determine amount of accleration.
 	accelspeed = accel * pmove->frametime * wishspeed * pmove->friction;
+	
+	pmove->Con_Printf("Accel: %f | %f \n", accelspeed, addspeed);
 
 	// Cap at addspeed
 	if (accelspeed > addspeed)
@@ -882,6 +886,11 @@ void PM_WalkMove()
 
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
+		pmove->Con_Printf("Here 1: %f | %f | %f \n", pmove->velocity[0], pmove->velocity[1], flRatio);
+	}
+	else 
+	{
+		pmove->Con_Printf("Not there");
 	}
 
 	// Copy movement amounts
@@ -889,12 +898,21 @@ void PM_WalkMove()
 	smove = pmove->cmd.sidemove;
 
 	// Zero out z components of movement vectors
-	pmove->forward[2] = 0;
-	pmove->right[2] = 0;
+	if(pmove->forward[2] != 0)
+	{
+		pmove->forward[2] = 0;
+		
+		VectorNormalize(pmove->forward);
+	}
+	
+	if(pmove->right[2] != 0)
+	{
+		pmove->right[2] = 0;
+		
+		VectorNormalize(pmove->right);
+	}
 
 	// Normalize remainder of vectors.
-	VectorNormalize(pmove->forward);
-	VectorNormalize(pmove->right);
 
 	// Determine x and y parts of velocity
 	for (i = 0; i < 2; i++)
@@ -910,7 +928,7 @@ void PM_WalkMove()
 	wishspeed = VectorNormalize(wishdir);
 
 	// Clamp to server defined max speed
-	if (wishspeed > pmove->maxspeed)
+	if ((wishspeed != 0.0f ) && wishspeed > pmove->maxspeed)
 	{
 		VectorScale(wishvel, pmove->maxspeed / wishspeed, wishvel);
 		wishspeed = pmove->maxspeed;
