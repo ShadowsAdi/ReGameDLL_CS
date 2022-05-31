@@ -837,7 +837,7 @@ void PM_Accelerate(vec_t *wishdir, real_t wishspeed, float accel)
 	// Reduce wishspeed by the amount of veer.
 	addspeed = wishspeed - currentspeed;
 	
-	pmove->Con_Printf("Speed: %f | %f", currentspeed, addspeed);
+	pmove->Con_Printf("Speed: %f | %f\n", currentspeed, addspeed);
 
 	// If not going to add any speed, done.
 	if (addspeed <= 0)
@@ -887,10 +887,6 @@ void PM_WalkMove()
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
 		pmove->Con_Printf("Here 1: %f | %f | %f \n", pmove->velocity[0], pmove->velocity[1], flRatio);
-	}
-	else 
-	{
-		pmove->Con_Printf("Not there");
 	}
 
 	// Copy movement amounts
