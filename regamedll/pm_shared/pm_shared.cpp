@@ -2832,7 +2832,7 @@ void PM_ReduceTimers()
 		
 		pmove->fuser2 -= frame_msec;
 
-		pmove->Con_Printf("Here 1: %f | %f | %f | %s \n", pmove->fuser2, frame_msec, temp, ( temp >= frame_msec ) ? "true" : "false" );
+		pmove->Con_Printf("Here 1: %f | %f \n", pmove->fuser2, frame_msec);
 
 		if (pmove->fuser2 < 0.0)
 		{
