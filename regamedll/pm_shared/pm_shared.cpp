@@ -880,14 +880,18 @@ void PM_WalkMove()
 
 	pmtrace_t trace;
 
-	/*if (pmove->fuser2 > 0.0)
+	if (pmove->fuser2 > 0.0)
 	{
+#ifdef REGAMEDLL_ADD
+		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.1;
+#else
 		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.01;
+#endif
 
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
 		pmove->Con_Printf("Here 1: %f | %f | %f \n", pmove->velocity[0], pmove->velocity[1], flRatio);
-	}*/
+	}
 
 	// Copy movement amounts
 	fmove = pmove->cmd.forwardmove;
