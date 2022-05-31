@@ -883,7 +883,7 @@ void PM_WalkMove()
 	if (pmove->fuser2 > 0.0)
 	{
 #ifdef REGAMEDLL_ADD
-		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.1;
+		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.02;
 #else
 		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.01;
 #endif
