@@ -883,6 +883,11 @@ void PM_WalkMove()
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
 	}
+	
+	if(pmove->fuser2 < 0.0)
+	{
+		pmove->fuser2 = 0.0
+	}
 
 	// Copy movement amounts
 	fmove = pmove->cmd.forwardmove;
@@ -2825,18 +2830,7 @@ void PM_ReduceTimers()
 	{
 		pmove->Con_Printf("Here: %f\n", pmove->fuser2);
 		
-		float temp;
-		
-		temp = pmove->fuser2 - frame_msec;
-		
-		if(temp >= frame_msec)
-		{
-			pmove->fuser2 -= frame_msec;
-		}
-		else
-		{
-			pmove->fuser2 -= 5.0f;
-		}
+		pmove->fuser2 -= frame_msec;
 
 		pmove->Con_Printf("Here 1: %f | %f | %f | %s \n", pmove->fuser2, frame_msec, temp, ( temp >= frame_msec ) ? "true" : "false" );
 
