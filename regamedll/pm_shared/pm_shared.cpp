@@ -2787,7 +2787,7 @@ void PM_ReduceTimers()
 #ifdef REGAMEDLL_ADD
 	if(sv_legacy_movement.value > 0.0)
 	{
-		frame_msec = 2000.0f * pmove->frametime;
+		frame_msec = 10.0f;
 	}
 #endif
 	
