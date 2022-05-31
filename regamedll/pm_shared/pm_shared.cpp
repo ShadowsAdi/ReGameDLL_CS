@@ -883,11 +883,6 @@ void PM_WalkMove()
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
 	}
-	
-	if(pmove->fuser2 < 0.0)
-	{
-		pmove->fuser2 = 0.0;
-	}
 
 	// Copy movement amounts
 	fmove = pmove->cmd.forwardmove;
