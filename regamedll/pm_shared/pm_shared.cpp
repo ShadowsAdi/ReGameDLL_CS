@@ -884,6 +884,8 @@ void PM_WalkMove()
 	{
 		real_t flRatio = (100 - pmove->fuser2 * 0.001 * 19) * 0.01;
 
+		VectorInverse(pmove->velocity);
+
 		pmove->velocity[0] *= flRatio;
 		pmove->velocity[1] *= flRatio;
 		pmove->Con_Printf("Here 1: %f | %f | %f \n", pmove->velocity[0], pmove->velocity[1], flRatio);
