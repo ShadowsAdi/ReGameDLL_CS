@@ -886,7 +886,7 @@ void PM_WalkMove()
 	
 	if(pmove->fuser2 < 0.0)
 	{
-		pmove->fuser2 = 0.0
+		pmove->fuser2 = 0.0;
 	}
 
 	// Copy movement amounts
