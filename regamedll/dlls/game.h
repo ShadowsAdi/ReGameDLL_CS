@@ -191,6 +191,8 @@ extern cvar_t plant_c4_anywhere;
 
 #endif
 
+extern cvar_t sv_legacy_movement;
+
 extern cvar_t scoreboard_showmoney;
 extern cvar_t scoreboard_showhealth;
 extern cvar_t scoreboard_showdefkit;

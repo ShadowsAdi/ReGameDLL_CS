@@ -93,6 +93,7 @@ cvar_t sk_healthkit3         = { "sk_healthkit3", "0", 0, 0.0f, nullptr };
 cvar_t sk_scientist_heal1    = { "sk_scientist_heal1", "0", 0, 0.0f, nullptr };
 cvar_t sk_scientist_heal2    = { "sk_scientist_heal2", "0", 0, 0.0f, nullptr };
 cvar_t sk_scientist_heal3    = { "sk_scientist_heal3", "0", 0, 0.0f, nullptr };
+cvar_t sv_legacy_movement                = { "sv_legacy_movement", "0", FCVAR_SERVER, 0.0f, nullptr };
 
 #ifdef BUILD_LATEST
 
@@ -393,6 +394,7 @@ void EXT_FUNC GameDLLInit()
 	CVAR_REGISTER(&sv_autobunnyhopping);
 	CVAR_REGISTER(&sv_enablebunnyhopping);
 	CVAR_REGISTER(&plant_c4_anywhere);
+	CVAR_REGISTER(&sv_legacy_movement);
 
 	// print version
 	CONSOLE_ECHO("ReGameDLL version: " APP_VERSION "\n");

@@ -4949,7 +4949,7 @@ void EXT_FUNC UpdateClientData(const edict_t *ent, int sendweapons, struct clien
 			ItemInfo II;
 			Q_memset(&II, 0, sizeof(II));
 
-			CBasePlayerWeapon *weapon = (CBasePlayerWeapon *)pPlayer->m_pActiveItem->GetWeaponPtr();
+			CBasePlayerWeapon *weapon =  static_cast<CBasePlayerWeapon *>(pPlayer->m_pActiveItem->GetWeaponPtr());
 			if (weapon && weapon->UseDecrement() &&
 #ifdef REGAMEDLL_API
 				weapon->CSPlayerItem()->GetItemInfo(&II)

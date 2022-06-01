@@ -889,12 +889,21 @@ void PM_WalkMove()
 	smove = pmove->cmd.sidemove;
 
 	// Zero out z components of movement vectors
-	pmove->forward[2] = 0;
-	pmove->right[2] = 0;
+	if(pmove->forward[2] != 0)
+	{
+		pmove->forward[2] = 0;
+		
+		VectorNormalize(pmove->forward);
+	}
+	
+	if(pmove->right[2] != 0)
+	{
+		pmove->right[2] = 0;
+		
+		VectorNormalize(pmove->right);
+	}
 
 	// Normalize remainder of vectors.
-	VectorNormalize(pmove->forward);
-	VectorNormalize(pmove->right);
 
 	// Determine x and y parts of velocity
 	for (i = 0; i < 2; i++)
@@ -910,7 +919,7 @@ void PM_WalkMove()
 	wishspeed = VectorNormalize(wishdir);
 
 	// Clamp to server defined max speed
-	if (wishspeed > pmove->maxspeed)
+	if ((wishspeed != 0.0f ) && wishspeed > pmove->maxspeed)
 	{
 		VectorScale(wishvel, pmove->maxspeed / wishspeed, wishvel);
 		wishspeed = pmove->maxspeed;
@@ -2773,43 +2782,63 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
-	if (pmove->flTimeStepSound > 0)
-	{
-		pmove->flTimeStepSound -= pmove->cmd.msec;
+	float frame_msec = pmove->cmd.msec;
 
-		if (pmove->flTimeStepSound < 0)
+#ifdef REGAMEDLL_ADD
+	if(sv_legacy_movement.value > 0.0)
+	{
+		if(frame_msec < 10.0)
 		{
-			pmove->flTimeStepSound = 0;
+			frame_msec *= sv_legacy_movement.value;
+		}
+		else
+		{
+			frame_msec *= sv_legacy_movement.value;
+		}
+	}
+#endif
+	
+	if (pmove->flTimeStepSound > 0.0)
+	{
+		pmove->flTimeStepSound -= frame_msec;
+
+		if (pmove->flTimeStepSound < 0.0)
+		{
+			pmove->flTimeStepSound = 0.0;
 		}
 	}
 
-	if (pmove->flDuckTime > 0)
+	if (pmove->flDuckTime > 0.0)
 	{
-		pmove->flDuckTime -= pmove->cmd.msec;
+		pmove->flDuckTime -= frame_msec;
 
-		if (pmove->flDuckTime < 0)
+		if (pmove->flDuckTime < 0.0)
 		{
-			pmove->flDuckTime = 0;
+			pmove->flDuckTime = 0.0;
 		}
 	}
 
-	if (pmove->flSwimTime > 0)
+	if (pmove->flSwimTime > 0.0)
 	{
-		pmove->flSwimTime -= pmove->cmd.msec;
+		pmove->flSwimTime -= frame_msec;
 
-		if (pmove->flSwimTime < 0)
+		if (pmove->flSwimTime < 0.0)
 		{
-			pmove->flSwimTime = 0;
+			pmove->flSwimTime = 0.0;
 		}
 	}
 
 	if (pmove->fuser2 > 0.0)
 	{
-		pmove->fuser2 -= pmove->cmd.msec;
-
+		pmove->Con_Printf("Here: %f\n", pmove->fuser2);
+		
+		pmove->fuser2 -= frame_msec;
+#ifdef REGAMEDLL_ADD
+		pmove->Con_Printf("Here 1: %f | %f | %f\n", pmove->fuser2, frame_msec, sv_legacy_movement.value);
+#endif
 		if (pmove->fuser2 < 0.0)
 		{
-			pmove->fuser2 = 0;
+			pmove->fuser2 = 0.0;
 		}
 	}
 }
