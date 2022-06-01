@@ -2791,6 +2791,10 @@ void PM_ReduceTimers()
 		{
 			frame_msec *= sv_legacy_movement.value;
 		}
+		else
+		{
+			frame_msec *= sv_legacy_movement.value;
+		}
 	}
 #endif
 	
