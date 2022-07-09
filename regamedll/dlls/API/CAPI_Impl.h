@@ -581,6 +581,10 @@ typedef IHookChainRegistryClassImpl<int, CBasePlayerWeapon, int, int, float> CRe
 typedef IHookChainClassImpl<bool, CBasePlayerWeapon, int, int, float, float, const char *, const char *> CReGameHook_CBasePlayerWeapon_DefaultShotgunReload;
 typedef IHookChainRegistryClassImpl<bool, CBasePlayerWeapon, int, int, float, float, const char *, const char *> CReGameHookRegistry_CBasePlayerWeapon_DefaultShotgunReload;
 
+// CBasePlayerWeapon::KickBack hook
+typedef IHookChainClassImpl<void, CBasePlayerWeapon, float, float, float, float, float, float, int> CReGameHook_CBasePlayerWeapon_KickBack;
+typedef IHookChainRegistryClassImpl<void, CBasePlayerWeapon, float, float, float, float, float, float, int> CReGameHookRegistry_CBasePlayerWeapon_KickBack;
+
 // CBasePlayer::DropIdlePlayer hook
 typedef IHookChainClassImpl<void, class CBasePlayer, const char *> CReGameHook_CBasePlayer_DropIdlePlayer;
 typedef IHookChainRegistryClassImpl<void, class CBasePlayer, const char *> CReGameHookRegistry_CBasePlayer_DropIdlePlayer;
@@ -773,6 +777,8 @@ public:
 	CReGameHookRegistry_CBasePlayer_Pain m_CBasePlayer_Pain;
 	CReGameHookRegistry_CBasePlayer_DeathSound m_CBasePlayer_DeathSound;
 	CReGameHookRegistry_CBasePlayer_JoiningThink m_CBasePlayer_JoiningThink;
+	
+	CReGameHookRegistry_CBasePlayerWeapon_KickBack m_CBasePlayerWeapon_KickBack;
 
 public:
 	virtual IReGameHookRegistry_CBasePlayer_Spawn *CBasePlayer_Spawn();
@@ -904,6 +910,8 @@ public:
 	virtual IReGameHookRegistry_CBasePlayer_Pain *CBasePlayer_Pain();
 	virtual IReGameHookRegistry_CBasePlayer_DeathSound *CBasePlayer_DeathSound();
 	virtual IReGameHookRegistry_CBasePlayer_JoiningThink *CBasePlayer_JoiningThink();
+	
+	virtual IReGameHookRegistry_CBasePlayerWeapon_KickBack *CBasePlayerWeapon_KickBack();
 };
 
 extern CReGameHookchains g_ReGameHookchains;
