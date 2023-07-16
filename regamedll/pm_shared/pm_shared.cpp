@@ -1967,7 +1967,9 @@ void PM_Duck()
 	}
 }
 
-void PM_LadderMove(physent_t *pLadder)
+LINK_HOOK_VOID_CHAIN(PM_LadderMove, (physent_t *pLadder), pLadder);
+
+void EXT_FUNC __API_HOOK(PM_LadderMove)(physent_t *pLadder)
 {
 	vec3_t ladderCenter;
 	trace_t trace;
@@ -2773,43 +2775,59 @@ void PM_CheckParameters()
 
 void PM_ReduceTimers()
 {
-	if (pmove->flTimeStepSound > 0)
+	float frame_msec = pmove->cmd.msec;
+	
+	if (pmove->flTimeStepSound > 0.0)
 	{
-		pmove->flTimeStepSound -= pmove->cmd.msec;
+		pmove->flTimeStepSound -= frame_msec;
 
-		if (pmove->flTimeStepSound < 0)
+		if (pmove->flTimeStepSound < 0.0)
 		{
-			pmove->flTimeStepSound = 0;
+			pmove->flTimeStepSound = 0.0;
+		}
+	}
+	
+#ifdef REGAMEDLL_ADD
+	if(sv_legacy_movement.value > 0.0)
+	{
+		if(frame_msec < 10.0)
+		{
+			frame_msec *= 1.65f;
+		}
+		else
+		{
+			frame_msec *= 1.45f;
+		}
+	}
+#endif
+
+	if (pmove->flDuckTime > 0.0)
+	{
+		pmove->flDuckTime -= frame_msec;
+
+		if (pmove->flDuckTime < 0.0)
+		{
+			pmove->flDuckTime = 0.0;
 		}
 	}
 
-	if (pmove->flDuckTime > 0)
+	if (pmove->flSwimTime > 0.0)
 	{
-		pmove->flDuckTime -= pmove->cmd.msec;
+		pmove->flSwimTime -= frame_msec;
 
-		if (pmove->flDuckTime < 0)
+		if (pmove->flSwimTime < 0.0)
 		{
-			pmove->flDuckTime = 0;
-		}
-	}
-
-	if (pmove->flSwimTime > 0)
-	{
-		pmove->flSwimTime -= pmove->cmd.msec;
-
-		if (pmove->flSwimTime < 0)
-		{
-			pmove->flSwimTime = 0;
+			pmove->flSwimTime = 0.0;
 		}
 	}
 
 	if (pmove->fuser2 > 0.0)
 	{
-		pmove->fuser2 -= pmove->cmd.msec;
+		pmove->fuser2 -= frame_msec;
 
 		if (pmove->fuser2 < 0.0)
 		{
-			pmove->fuser2 = 0;
+			pmove->fuser2 = 0.0;
 		}
 	}
 }
